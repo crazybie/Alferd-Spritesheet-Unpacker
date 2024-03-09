@@ -49,12 +49,16 @@ namespace ASU.UI
             this.OverlayFontLabel = new System.Windows.Forms.Label();
             this.DragAndDropLabel = new System.Windows.Forms.Label();
             this.ZoomPanel = new ASU.UI.BuffablePanel(this.components);
+            this.outputPrefix = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.OptionsPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OptionsPanel
             // 
+            this.OptionsPanel.Controls.Add(this.label1);
+            this.OptionsPanel.Controls.Add(this.outputPrefix);
             this.OptionsPanel.Controls.Add(this.SelectAllButton);
             this.OptionsPanel.Controls.Add(this.DeSelectAllButton);
             this.OptionsPanel.Controls.Add(this.ExportLocationLabel);
@@ -66,9 +70,9 @@ namespace ASU.UI
             this.OptionsPanel.Controls.Add(this.OptionsButton);
             this.OptionsPanel.Controls.Add(this.CombineButton);
             this.OptionsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.OptionsPanel.Location = new System.Drawing.Point(0, 238);
+            this.OptionsPanel.Location = new System.Drawing.Point(0, 286);
             this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(604, 89);
+            this.OptionsPanel.Size = new System.Drawing.Size(694, 145);
             this.OptionsPanel.TabIndex = 0;
             // 
             // SelectAllButton
@@ -76,7 +80,7 @@ namespace ASU.UI
             this.SelectAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectAllButton.Image = global::ASU.Properties.Resources.select_all;
             this.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.SelectAllButton.Location = new System.Drawing.Point(444, 6);
+            this.SelectAllButton.Location = new System.Drawing.Point(531, 6);
             this.SelectAllButton.Name = "SelectAllButton";
             this.SelectAllButton.Size = new System.Drawing.Size(78, 35);
             this.SelectAllButton.TabIndex = 9;
@@ -91,7 +95,7 @@ namespace ASU.UI
             this.DeSelectAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DeSelectAllButton.Image = global::ASU.Properties.Resources.deselect_all;
             this.DeSelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DeSelectAllButton.Location = new System.Drawing.Point(523, 6);
+            this.DeSelectAllButton.Location = new System.Drawing.Point(610, 6);
             this.DeSelectAllButton.Name = "DeSelectAllButton";
             this.DeSelectAllButton.Size = new System.Drawing.Size(78, 35);
             this.DeSelectAllButton.TabIndex = 3;
@@ -105,7 +109,7 @@ namespace ASU.UI
             // 
             this.ExportLocationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ExportLocationLabel.AutoSize = true;
-            this.ExportLocationLabel.Location = new System.Drawing.Point(12, 61);
+            this.ExportLocationLabel.Location = new System.Drawing.Point(9, 61);
             this.ExportLocationLabel.Name = "ExportLocationLabel";
             this.ExportLocationLabel.Size = new System.Drawing.Size(81, 13);
             this.ExportLocationLabel.TabIndex = 8;
@@ -117,7 +121,7 @@ namespace ASU.UI
             this.SplitFrameCheckBoxButton.Appearance = System.Windows.Forms.Appearance.Button;
             this.SplitFrameCheckBoxButton.Image = global::ASU.Properties.Resources.cut;
             this.SplitFrameCheckBoxButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.SplitFrameCheckBoxButton.Location = new System.Drawing.Point(266, 6);
+            this.SplitFrameCheckBoxButton.Location = new System.Drawing.Point(263, 6);
             this.SplitFrameCheckBoxButton.Name = "SplitFrameCheckBoxButton";
             this.SplitFrameCheckBoxButton.Size = new System.Drawing.Size(78, 35);
             this.SplitFrameCheckBoxButton.TabIndex = 4;
@@ -130,7 +134,7 @@ namespace ASU.UI
             this.PasteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PasteButton.Image = global::ASU.Properties.Resources.paste_plain;
             this.PasteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.PasteButton.Location = new System.Drawing.Point(182, 6);
+            this.PasteButton.Location = new System.Drawing.Point(179, 6);
             this.PasteButton.Name = "PasteButton";
             this.PasteButton.Size = new System.Drawing.Size(78, 35);
             this.PasteButton.TabIndex = 2;
@@ -145,7 +149,7 @@ namespace ASU.UI
             this.ReloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ReloadButton.Image = global::ASU.Properties.Resources.arrow_refresh;
             this.ReloadButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ReloadButton.Location = new System.Drawing.Point(98, 6);
+            this.ReloadButton.Location = new System.Drawing.Point(95, 6);
             this.ReloadButton.Name = "ReloadButton";
             this.ReloadButton.Size = new System.Drawing.Size(78, 35);
             this.ReloadButton.TabIndex = 1;
@@ -160,7 +164,7 @@ namespace ASU.UI
             this.ExportSelectedButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportSelectedButton.Image = global::ASU.Properties.Resources.images;
             this.ExportSelectedButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExportSelectedButton.Location = new System.Drawing.Point(444, 47);
+            this.ExportSelectedButton.Location = new System.Drawing.Point(531, 68);
             this.ExportSelectedButton.Name = "ExportSelectedButton";
             this.ExportSelectedButton.Size = new System.Drawing.Size(157, 39);
             this.ExportSelectedButton.TabIndex = 7;
@@ -173,9 +177,9 @@ namespace ASU.UI
             // 
             this.ExportLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportLocationTextBox.Location = new System.Drawing.Point(97, 58);
+            this.ExportLocationTextBox.Location = new System.Drawing.Point(94, 58);
             this.ExportLocationTextBox.Name = "ExportLocationTextBox";
-            this.ExportLocationTextBox.Size = new System.Drawing.Size(341, 21);
+            this.ExportLocationTextBox.Size = new System.Drawing.Size(431, 21);
             this.ExportLocationTextBox.TabIndex = 6;
             // 
             // OptionsButton
@@ -183,7 +187,7 @@ namespace ASU.UI
             this.OptionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.OptionsButton.Image = global::ASU.Properties.Resources.wrench;
             this.OptionsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.OptionsButton.Location = new System.Drawing.Point(10, 6);
+            this.OptionsButton.Location = new System.Drawing.Point(7, 6);
             this.OptionsButton.Name = "OptionsButton";
             this.OptionsButton.Size = new System.Drawing.Size(78, 35);
             this.OptionsButton.TabIndex = 0;
@@ -197,7 +201,7 @@ namespace ASU.UI
             this.CombineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CombineButton.Image = global::ASU.Properties.Resources.compress;
             this.CombineButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CombineButton.Location = new System.Drawing.Point(349, 6);
+            this.CombineButton.Location = new System.Drawing.Point(346, 6);
             this.CombineButton.Name = "CombineButton";
             this.CombineButton.Size = new System.Drawing.Size(70, 35);
             this.CombineButton.TabIndex = 5;
@@ -235,7 +239,7 @@ namespace ASU.UI
             this.MainPanel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(604, 238);
+            this.MainPanel.Size = new System.Drawing.Size(694, 286);
             this.MainPanel.TabIndex = 4;
             this.MainPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainPanel_DragDrop);
             this.MainPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainPanel_DragEnter);
@@ -250,7 +254,7 @@ namespace ASU.UI
             this.ControlsHelpLabel.AutoSize = true;
             this.ControlsHelpLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ControlsHelpLabel.ForeColor = System.Drawing.Color.Gray;
-            this.ControlsHelpLabel.Location = new System.Drawing.Point(2, 170);
+            this.ControlsHelpLabel.Location = new System.Drawing.Point(2, 218);
             this.ControlsHelpLabel.Name = "ControlsHelpLabel";
             this.ControlsHelpLabel.Size = new System.Drawing.Size(307, 65);
             this.ControlsHelpLabel.TabIndex = 6;
@@ -263,7 +267,7 @@ namespace ASU.UI
             this.HyperModeUnpacking0Label.BackColor = System.Drawing.Color.Transparent;
             this.HyperModeUnpacking0Label.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HyperModeUnpacking0Label.ForeColor = System.Drawing.Color.Gray;
-            this.HyperModeUnpacking0Label.Location = new System.Drawing.Point(346, 77);
+            this.HyperModeUnpacking0Label.Location = new System.Drawing.Point(436, 101);
             this.HyperModeUnpacking0Label.Name = "HyperModeUnpacking0Label";
             this.HyperModeUnpacking0Label.Size = new System.Drawing.Size(61, 40);
             this.HyperModeUnpacking0Label.TabIndex = 5;
@@ -278,7 +282,7 @@ namespace ASU.UI
             this.HyperModeUnpacking1Label.BackColor = System.Drawing.Color.Transparent;
             this.HyperModeUnpacking1Label.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HyperModeUnpacking1Label.ForeColor = System.Drawing.Color.Gray;
-            this.HyperModeUnpacking1Label.Location = new System.Drawing.Point(466, 77);
+            this.HyperModeUnpacking1Label.Location = new System.Drawing.Point(556, 101);
             this.HyperModeUnpacking1Label.Name = "HyperModeUnpacking1Label";
             this.HyperModeUnpacking1Label.Size = new System.Drawing.Size(57, 40);
             this.HyperModeUnpacking1Label.TabIndex = 4;
@@ -292,7 +296,7 @@ namespace ASU.UI
             this.HyperModeUnpackingLabel.BackColor = System.Drawing.Color.Transparent;
             this.HyperModeUnpackingLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HyperModeUnpackingLabel.ForeColor = System.Drawing.Color.Gray;
-            this.HyperModeUnpackingLabel.Location = new System.Drawing.Point(399, 77);
+            this.HyperModeUnpackingLabel.Location = new System.Drawing.Point(489, 101);
             this.HyperModeUnpackingLabel.Name = "HyperModeUnpackingLabel";
             this.HyperModeUnpackingLabel.Size = new System.Drawing.Size(76, 40);
             this.HyperModeUnpackingLabel.TabIndex = 3;
@@ -315,7 +319,7 @@ namespace ASU.UI
             // 
             this.DragAndDropLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DragAndDropLabel.AutoSize = true;
-            this.DragAndDropLabel.Location = new System.Drawing.Point(216, 77);
+            this.DragAndDropLabel.Location = new System.Drawing.Point(306, 101);
             this.DragAndDropLabel.Name = "DragAndDropLabel";
             this.DragAndDropLabel.Size = new System.Drawing.Size(385, 40);
             this.DragAndDropLabel.TabIndex = 1;
@@ -332,11 +336,27 @@ namespace ASU.UI
             this.ZoomPanel.Visible = false;
             this.ZoomPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ZoomPanel_Paint);
             // 
+            // outputPrefix
+            // 
+            this.outputPrefix.Location = new System.Drawing.Point(95, 94);
+            this.outputPrefix.Name = "outputPrefix";
+            this.outputPrefix.Size = new System.Drawing.Size(430, 21);
+            this.outputPrefix.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "output prefix:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 327);
+            this.ClientSize = new System.Drawing.Size(694, 431);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.OptionsPanel);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -377,5 +397,7 @@ namespace ASU.UI
         internal System.Windows.Forms.Label HyperModeUnpacking0Label;
         internal System.Windows.Forms.Label HyperModeUnpacking1Label;
         internal System.Windows.Forms.Label ControlsHelpLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox outputPrefix;
     }
 }

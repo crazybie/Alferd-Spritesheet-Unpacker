@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ASU.UI
 {
@@ -44,7 +41,7 @@ namespace ASU.UI
         private Rectangle HighlightRect = Rectangle.Empty;
 
         private bool SuppressThirdPartyWarningMessage = false;
-        public static int DistanceBetweenTiles = 3;
+        public static int DistanceBetweenTiles = 1;
         public static Bitmap SheetWithBoxes;
         private static Bitmap SheetWithBoxesEnlarged;
         public static SolidBrush HoverFill = new SolidBrush(Color.FromArgb(150, 224, 224, 224));
@@ -124,7 +121,7 @@ namespace ASU.UI
             {
                 this.PaintedImage.Dispose();
                 this.PaintedImage = null;
-            }  
+            }
 
             BO.RegionUnpacker.Counter = 0;
             SheetWithBoxes = null;
@@ -206,7 +203,7 @@ namespace ASU.UI
                             (Environment.ProcessorCount > 1)
                             && (countUnpacking < 2)
                             )
-                        ||  (countUnpacking < 1)
+                        || (countUnpacking < 1)
                         )
                     {
                         foreach (BO.ImageUnpacker unpacker in this.unpackers)
@@ -252,9 +249,9 @@ namespace ASU.UI
 
         private void SetHoverOverlayText()
         {
-	        this.SetOverlayText(
-                                new List<string> {"height", "width"}
-                                , new List<string>{ this.Hover.Height.ToString(), this.Hover.Width.ToString() }
+            this.SetOverlayText(
+                                new List<string> { "height", "width" }
+                                , new List<string> { this.Hover.Height.ToString(), this.Hover.Width.ToString() }
                                 );
         }
 
@@ -273,19 +270,19 @@ namespace ASU.UI
 
             this.SetOverlayText(
                                 new List<string>{
-		                                            "height"
-		                                            , "width"
-		                                            , "colours"
-		                                            , "frames"
-		                                            , "selected"
-	                                            }
+                                                    "height"
+                                                    , "width"
+                                                    , "colours"
+                                                    , "frames"
+                                                    , "selected"
+                                                }
                                 , new List<string>{
-		                                            this.unpackers[0].GetSize().Height.ToString()
+                                                    this.unpackers[0].GetSize().Height.ToString()
                                                     , this.unpackers[0].GetSize().Width.ToString()
                                                     , colours
                                                     , this.Boxes.Count.ToString()
                                                     , this.Selected.Count.ToString()
-	                                                }
+                                                    }
                                 );
         }
 
@@ -453,7 +450,7 @@ namespace ASU.UI
                 {
                     dropped = e.Data.GetData(objFormat);
 
-                    if(
+                    if (
                         (dropped != null)
                         && (object.ReferenceEquals(dropped.GetType(), typeof(string[])))
                         )
@@ -488,16 +485,16 @@ namespace ASU.UI
                                     {
                                         userOkToConvertFiles = MessageBox.Show(
                                                                                 String.Format(
-                                                                                            @"You are trying to load a sprite sheet in a non-standard image file format. " 
-                                                                                            + @"This file will be converted to a common image format first using the third party command line tool '{0}'." 
-                                                                                            + @"{1}{1}Your operating system may request confirmation to execute {0}." 
-                                                                                            + @"{1}{1}If you'd like to use a different conversion utility then please do so by editing the 'app.config' file found here:{1}{2}" 
+                                                                                            @"You are trying to load a sprite sheet in a non-standard image file format. "
+                                                                                            + @"This file will be converted to a common image format first using the third party command line tool '{0}'."
+                                                                                            + @"{1}{1}Your operating system may request confirmation to execute {0}."
+                                                                                            + @"{1}{1}If you'd like to use a different conversion utility then please do so by editing the 'app.config' file found here:{1}{2}"
                                                                                             + @"{1}{1}Do you want to continue and use '{0}'?"
                                                                                             , BO.ThirdPartyPaths.GetThirdPartyConversionToolExecutableName()
                                                                                             , Environment.NewLine
                                                                                             , AppDomain.CurrentDomain.BaseDirectory + "\\app.config"
                                                                                             )
-                                                                                , "Third Party Converter Warning" 
+                                                                                , "Third Party Converter Warning"
                                                                                 , MessageBoxButtons.YesNoCancel
                                                                                 , MessageBoxIcon.Warning
                                                                                 ) == System.Windows.Forms.DialogResult.Yes;
@@ -777,11 +774,11 @@ namespace ASU.UI
                     else if (
                                 (PaintedImage != null)
                                 && (
-                                    this.MainPanel.ClientRectangle.Width != PaintedImage.Width 
+                                    this.MainPanel.ClientRectangle.Width != PaintedImage.Width
                                     || this.MainPanel.ClientRectangle.Height != PaintedImage.Height
                                     )
                             )
-                    {   
+                    {
                         refresh = true;
                     }
 
@@ -1018,7 +1015,7 @@ namespace ASU.UI
                     foreach (BO.ImageUnpacker unpacker in unpackers)
                     {
                         if (
-                            (folderResponse == System.Windows.Forms.DialogResult.OK) 
+                            (folderResponse == System.Windows.Forms.DialogResult.OK)
                             || (!PromptForDestinationFolder)
                             )
                         {
@@ -1041,10 +1038,10 @@ namespace ASU.UI
                                     if (!hasUserBeenPromptedToConvertFiles)
                                     {
                                         userOkToConvertFiles = MessageBox.Show(
-                                                                                String.Format("You are about to export an advanced image file format." 
-                                                                                                + "This file will be converted to a to common file format first and then converted to the advanced image file format by the third party command line tool '{0}'." 
-                                                                                                + "{1}{1}Your operating system may request confirmation to execute {0}." 
-                                                                                                + "{1}{1}If you'd like to use a different conversion utility then please do so by editing the 'app.config' file found here:{1}{2}" 
+                                                                                String.Format("You are about to export an advanced image file format."
+                                                                                                + "This file will be converted to a to common file format first and then converted to the advanced image file format by the third party command line tool '{0}'."
+                                                                                                + "{1}{1}Your operating system may request confirmation to execute {0}."
+                                                                                                + "{1}{1}If you'd like to use a different conversion utility then please do so by editing the 'app.config' file found here:{1}{2}"
                                                                                                 + "{1}{1}Do you want to continue and use'{0}'?"
                                                                                                 , BO.ThirdPartyPaths.GetThirdPartyConversionToolExecutableName()
                                                                                                 , Environment.NewLine
@@ -1137,13 +1134,13 @@ namespace ASU.UI
 
                                     if (string.IsNullOrEmpty(ExportNConvertArgs))
                                     {
-                                        bitmap.Save(String.Format("{0}\\{1}.{2}", outpath, k.ToString(), ExportFormat.ToString().ToLower()), ExportFormat);
+                                        bitmap.Save(String.Format("{0}\\{1}{2}.{3}", outpath, outputPrefix.Text, k.ToString(), ExportFormat.ToString().ToLower()), ExportFormat);
                                     }
                                     else
                                     {
                                         string tempBitmapPath = null;
                                         System.Diagnostics.ProcessStartInfo startInfo = null;
-                                        tempBitmapPath = String.Format("{0}\\{1}.png", outpath, k.ToString());
+                                        tempBitmapPath = String.Format("{0}\\{1}{2}.png", outpath, outputPrefix.Text, k.ToString());
                                         tempFiles.Add(tempBitmapPath);
                                         bitmap.Save(tempBitmapPath, System.Drawing.Imaging.ImageFormat.Png);
                                         args = ExportNConvertArgs.Replace("{file_name}", String.Format("\"{0}\\{1}.png\"", outpath, k.ToString()));
@@ -1285,7 +1282,7 @@ namespace ASU.UI
                 this.Selected.Clear();
                 if (this.Options == null)
                 {
-                    selectOrder = Enums.SelectAllOrder.TopLeft;                    
+                    selectOrder = Enums.SelectAllOrder.TopLeft;
                 }
                 else
                 {
@@ -1514,8 +1511,8 @@ namespace ASU.UI
                     else
                     {
                         Rectangle randomRectangle;
-                        
-                        original = unpacker.GetOriginalClone();                        
+
+                        original = unpacker.GetOriginalClone();
                         randomRectangle = new Rectangle(0, 0, this.Random.Next(2, Convert.ToInt32(original.Width * 0.4f)), this.Random.Next(2, Convert.ToInt32(original.Height * 0.4f)));
                         backgroundImage = new Bitmap(randomRectangle.Width, randomRectangle.Height);
                         randomRectangle.X = this.Random.Next(0, Convert.ToInt32(original.Width - randomRectangle.Width));
@@ -1524,7 +1521,7 @@ namespace ASU.UI
                         graphics = Graphics.FromImage(backgroundImage);
                         graphics.DrawImage(original, 0, 0, randomRectangle, GraphicsUnit.Pixel);
 
-                        this.MainPanel.BackgroundImage = backgroundImage;                        
+                        this.MainPanel.BackgroundImage = backgroundImage;
                     }
 
                     this.Text = this.FormTitle;
