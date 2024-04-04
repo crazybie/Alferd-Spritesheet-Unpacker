@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace ASU.BO
@@ -32,7 +31,7 @@ namespace ASU.BO
         public string FileName { get; set; }
         public int ColoursCount = 0;
 
-        public event UnpackingCompleteEventHandler UnpackingComplete;        
+        public event UnpackingCompleteEventHandler UnpackingComplete;
         public event PcCompleteChangedEventHandler PcCompleteChanged;
 
         public delegate void PcCompleteChangedEventHandler(int pcComplete);
@@ -44,7 +43,8 @@ namespace ASU.BO
             {
                 this.pallette = image.Palette;
             }
-            this.original = new Bitmap((Bitmap)image.Clone());
+            //this.original = new Bitmap((Bitmap)image.Clone());
+            this.original = image;
             this.originalSize = image.Size;
             if (removeTransparency)
             {
@@ -65,15 +65,15 @@ namespace ASU.BO
             Color transparentPixel;
             Color opaquedPixel;
 
-            for(int x = 0; x < image.Width; x++)
+            for (int x = 0; x < image.Width; x++)
             {
-                for(int y = 0; y < image.Height; y++)
+                for (int y = 0; y < image.Height; y++)
                 {
                     pixel = image.GetPixel(x, y);
 
                     if (!coloursByArgb.ContainsKey(pixel.ToArgb()))
                     {
-                        coloursByArgb.Add(pixel.ToArgb(), pixel);     
+                        coloursByArgb.Add(pixel.ToArgb(), pixel);
                     }
                     if (pixel.A < 255)
                     {
@@ -186,11 +186,14 @@ namespace ASU.BO
 
         public Bitmap GetOriginalClone()
         {
-            Bitmap clone = default(Bitmap);
-
-            lock ((this.originalLock))
+            Bitmap clone;
+            lock (originalLock)
             {
-                clone = new Bitmap((Bitmap)this.original.Clone());
+                clone = new Bitmap(original.Width, original.Height, original.PixelFormat);
+                using (var g = Graphics.FromImage(clone))
+                {
+                    g.DrawImage(original, 0, 0);
+                }
             }
 
             return clone;
@@ -198,7 +201,7 @@ namespace ASU.BO
 
         private void SetPcComplete(int pcComplete)
         {
-            if(pcComplete > 100)
+            if (pcComplete > 100)
             {   // TODO: Fix this bug.
                 pcComplete = 100;
             }
@@ -285,7 +288,7 @@ namespace ASU.BO
                 }
                 this.SetPcComplete(10);
 
-                if(Environment.ProcessorCount > 1)
+                if (Environment.ProcessorCount > 1)
                 {
                     subRegionCount = 4;
                 }
@@ -300,19 +303,19 @@ namespace ASU.BO
                 this.areaToUnpack = this.originalSize.Width * this.originalSize.Height;
 
                 totalSize = this.originalSize.Height * this.originalSize.Width;
-                
+
                 for (int y = 0; y < this.originalSize.Height; y += ySize)
                 {
                     for (int x = 0; x < this.originalSize.Width; x += xSize)
                     {
-                        region = new Rectangle(x, y, Math.Min(xSize+1, (this.originalSize.Width - x) - 1), Math.Min(ySize+1, (this.originalSize.Height - y) - 1));
+                        region = new Rectangle(x, y, Math.Min(xSize + 1, (this.originalSize.Width - x) - 1), Math.Min(ySize + 1, (this.originalSize.Height - y) - 1));
                         regionThread = new System.Threading.Thread(this.HandleDividedAreaThread);
                         regionThread.Name = "Region thread " + (y * (xSize * 4)) + x;
                         this.threadCounter += 1;
                         regionThread.IsBackground = true;
-                        
+
                         regionThreads.Add(regionThread);
-                        regions.Add(region);                        
+                        regions.Add(region);
                     }
                 }
 
@@ -417,7 +420,7 @@ namespace ASU.BO
         private void SetBackgroundColour(Bitmap image)
         {
             Dictionary<int, int> colourCountsByArgb = new Dictionary<int, int>();
-            Color presentColour; 
+            Color presentColour;
             int maxCount = 0;
 
             for (int x = 0; x <= this.originalSize.Width - 1; x++)
