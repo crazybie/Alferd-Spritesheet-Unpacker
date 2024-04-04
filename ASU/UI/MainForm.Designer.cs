@@ -28,6 +28,8 @@ namespace ASU.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.OptionsPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.outputPrefix = new System.Windows.Forms.TextBox();
             this.SelectAllButton = new System.Windows.Forms.Button();
             this.DeSelectAllButton = new System.Windows.Forms.Button();
             this.ExportLocationLabel = new System.Windows.Forms.Label();
@@ -49,14 +51,16 @@ namespace ASU.UI
             this.OverlayFontLabel = new System.Windows.Forms.Label();
             this.DragAndDropLabel = new System.Windows.Forms.Label();
             this.ZoomPanel = new ASU.UI.BuffablePanel(this.components);
-            this.outputPrefix = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.startIdx = new System.Windows.Forms.TextBox();
             this.OptionsPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OptionsPanel
             // 
+            this.OptionsPanel.Controls.Add(this.startIdx);
+            this.OptionsPanel.Controls.Add(this.label2);
             this.OptionsPanel.Controls.Add(this.label1);
             this.OptionsPanel.Controls.Add(this.outputPrefix);
             this.OptionsPanel.Controls.Add(this.SelectAllButton);
@@ -74,6 +78,22 @@ namespace ASU.UI
             this.OptionsPanel.Name = "OptionsPanel";
             this.OptionsPanel.Size = new System.Drawing.Size(694, 145);
             this.OptionsPanel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "output prefix:";
+            // 
+            // outputPrefix
+            // 
+            this.outputPrefix.Location = new System.Drawing.Point(95, 94);
+            this.outputPrefix.Name = "outputPrefix";
+            this.outputPrefix.Size = new System.Drawing.Size(246, 21);
+            this.outputPrefix.TabIndex = 10;
             // 
             // SelectAllButton
             // 
@@ -336,21 +356,22 @@ namespace ASU.UI
             this.ZoomPanel.Visible = false;
             this.ZoomPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ZoomPanel_Paint);
             // 
-            // outputPrefix
+            // label2
             // 
-            this.outputPrefix.Location = new System.Drawing.Point(95, 94);
-            this.outputPrefix.Name = "outputPrefix";
-            this.outputPrefix.Size = new System.Drawing.Size(430, 21);
-            this.outputPrefix.TabIndex = 10;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(347, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "id start:";
             // 
-            // label1
+            // startIdx
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "output prefix:";
+            this.startIdx.Location = new System.Drawing.Point(397, 94);
+            this.startIdx.Name = "startIdx";
+            this.startIdx.Size = new System.Drawing.Size(128, 21);
+            this.startIdx.TabIndex = 13;
+            this.startIdx.Text = "0";
             // 
             // MainForm
             // 
@@ -399,5 +420,7 @@ namespace ASU.UI
         internal System.Windows.Forms.Label ControlsHelpLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox outputPrefix;
+        private System.Windows.Forms.TextBox startIdx;
+        private System.Windows.Forms.Label label2;
     }
 }

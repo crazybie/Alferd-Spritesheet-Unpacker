@@ -1134,7 +1134,7 @@ namespace ASU.UI
 
                                     if (string.IsNullOrEmpty(ExportNConvertArgs))
                                     {
-                                        bitmap.Save(String.Format("{0}\\{1}{2}.{3}", outpath, outputPrefix.Text, k.ToString(), ExportFormat.ToString().ToLower()), ExportFormat);
+                                        bitmap.Save(String.Format("{0}\\{1}{2}.{3}", outpath, outputPrefix.Text, (Int32.Parse(startIdx.Text) + k).ToString(), ExportFormat.ToString().ToLower()), ExportFormat);
                                     }
                                     else
                                     {
